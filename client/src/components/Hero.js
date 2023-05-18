@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <div>welcoe to hero section</div>
+    <div>welcome to hero section</div>
   )
 }
 
