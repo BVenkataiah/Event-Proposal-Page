@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema(
 )
 
 
-
+module.exports = mongoose.model("UserSchema", UserSchema);  
 
 
 const usermodel = mongoose.model("usermodel", UserSchema);
@@ -46,3 +46,6 @@ const usermodel = mongoose.model("usermodel", UserSchema);
     let data =  await usermodel.create(user)
     console.log(data);
 })();
+
+
+module.exports = mongoose.model("UserSchema", UserSchema);  

@@ -31,6 +31,7 @@ const VendorSchema = new mongoose.Schema(
 
 
 
+
 const Vendormodel = mongoose.model("vendormodel", VendorSchema);
 
 
@@ -46,3 +47,6 @@ const Vendormodel = mongoose.model("vendormodel", VendorSchema);
     let data =  await Vendormodel.create(vendor)
     console.log(data);
 })();
+
+
+module.exports = mongoose.model("VendorSchema", UserSchema);  

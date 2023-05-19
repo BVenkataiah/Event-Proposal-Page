@@ -51,7 +51,6 @@ const ProposalSchema = new mongoose.Schema(
 
 
 
-
 const proposalmodel = mongoose.model("proposalmodel", ProposalSchema);
 
 
@@ -70,3 +69,7 @@ const proposalmodel = mongoose.model("proposalmodel", ProposalSchema);
     let data =  await proposalmodel.create(proposal)
     console.log(data);
 })();
+
+
+
+module.exports = mongoose.model("ProposalSchema", ProposalSchema);  
