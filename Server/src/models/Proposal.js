@@ -1,4 +1,7 @@
-const ProposalSchema = mongoose.Schema(
+
+const mongoose = require("mongoose");
+
+const ProposalSchema = new mongoose.Schema(
     {
         EventName:{
             type:String,

@@ -1,4 +1,7 @@
-const VendorSchema = mongoose.Schema(
+const mongoose = require("mongoose")
+
+
+const VendorSchema = new mongoose.Schema(
     {
         Name:{
             type:String,
