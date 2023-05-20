@@ -1,14 +1,25 @@
 const jwt = require('jsonwebtoken');
 
-// Generate a JWT token
-const generateToken = (payload, secretKey, expiresIn) => {
-  return jwt.sign(payload, secretKey, { expiresIn });
-};
+const getAuthenticate = (req, res, next) => {
+  try{
+      const cookie = req.session.jwttoken 
+      const jwtSecretKey = process.env.JWT_SECRET_KEY || "secret" //Is or condition really required??
+      const result = jwt.verify(cookie, jwtSecretKey);
+      req.result = result.data.data;
+      if(result){
+          next();
+      }
+      else{
+          res.status(200).json({
+              msg:"Re-login"
+          })
+      }
+  }
+  catch(e){
+      res.status(200).json({
+          msg:"Re-login"
+      });
+  }
+}
 
-// Example usage
-/* const payload = { userId: 123456, username: 'john.doe' };
-const secretKey = 'mySecretKey';
-const expiresIn = '1h'; // Token expiration time, e.g., 1 hour*/
-
-const token = generateToken(payload, secretKey, expiresIn);
-console.log('Generated Token:', token);
+module.exports = { getAuthenticate };
