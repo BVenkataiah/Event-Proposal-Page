@@ -6,6 +6,6 @@ const { registerVendor, loginVendor, logoutVendor, getVendorInfo } = require("..
 router.post("/register", registerVendor);//registration
 router.post("/login", loginVendor);//login
 router.get("/logout", logoutVendor);//logout
-router.get("/info", getAuthenticate, getVendorInfo)//vendorInfo
+router.get("/info", getAuthenticate, getVendorInfo)//vendorinnfo
 
 module.exports = router;

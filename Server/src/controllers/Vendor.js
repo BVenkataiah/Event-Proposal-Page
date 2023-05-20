@@ -62,7 +62,7 @@ const loginVendor = async (req, res) => {
                 }
                 const jwtSecretKey = process.env.JWT_SECRET_KEY || "secret";
                 const token = jwt.sign({
-                    exp: Math.floor(Date.now() / 1000) + (60 * 60),// 60 min
+                    exp: Math.floor(Date.now() / 1000) + (60 * 60),
                     data: tokenData,
                 }, jwtSecretKey);
                 req.session.jwttoken = token;

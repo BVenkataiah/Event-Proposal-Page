@@ -66,7 +66,7 @@ const deleteProposal = async (req, res) => {
         })
 }
 
-const getAllProposal = async (req, res) => {         //only user can access this because he don't have vendorName key in his json objet response from backend
+const getAllProposal = async (req, res) => {         //only user
     if (req.result.vendorName === undefined) {
         await Proposal.find().then(data => {
             res.status(200).json({
@@ -86,7 +86,7 @@ const getAllProposal = async (req, res) => {         //only user can access this
     }
 }
 
-const getAProposal = (req, res) => {                 //we will use this to get the data of proposal the user selected
+const getAProposal = (req, res) => {                 // proposal the user selected
         Proposal.findById(req.params.proposalId).then(data => {
             res.status(200).json({
                 msg: "Success",

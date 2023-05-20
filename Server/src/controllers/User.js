@@ -1,7 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-// const express = require("express") ///no need for express so commenting it out....
 const dotenv = require("dotenv");
 const cook = require("cookie-parser");
 const session = require("express-session");
@@ -23,7 +22,7 @@ const registerUser = async (req, res) => {
             })
         }
 
-        const { userName, email, password, phone } = req.body;  //adding select as we gave it's default value as empty string
+        const { userName, email, password, phone } = req.body;  
         bcrypt.hash(password, 10, async function (err, hash) {
             if (err) {
                 return res.status(500).json({
@@ -71,7 +70,7 @@ const loginUser =async  (req, res) => {
                 if (result) {
                     let tokenData = {
                         data: user,
-                        date: new Date()  ///new date is for handling logout where we forcefully expire the token..
+                        date: new Date()  
                     }
     
                     const jwtSecretKey = process.env.JWT_SECRET_KEY || "secret";
@@ -119,7 +118,7 @@ const logoutUser = async (req, res) => {
     })
 }
 
-const getUserInfo = async (req, res) => {                        //here we are getting req.result from authentication step
+const getUserInfo = async (req, res) => {                       
     if (req.result.vendorName === undefined) {
         const data = await User.findById(req.result._id)
         res.status(200).json({

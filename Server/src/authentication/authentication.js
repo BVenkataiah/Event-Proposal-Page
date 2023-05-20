@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const getAuthenticate = (req, res, next) => {
   try{
       const cookie = req.session.jwttoken 
-      const jwtSecretKey = process.env.JWT_SECRET_KEY || "secret" //Is or condition really required??
+      const jwtSecretKey = process.env.JWT_SECRET_KEY || "secret";
       const result = jwt.verify(cookie, jwtSecretKey);
       req.result = result.data.data;
       if(result){
