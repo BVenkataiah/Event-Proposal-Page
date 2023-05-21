@@ -9,7 +9,7 @@ const UserHeader = () => {
       <div id="navbar">
         <div id="nav-logo">LOGO</div>
         <div id="profile-section">
-          <span id="profile-name">Vendor Name</span>
+          <span id="profile-name">User Name</span>
           <span id="profile-photo">
             <img src={profilepic} alt="pic" id="pic-pro" />
           </span>
