@@ -1,4 +1,4 @@
-import {Clear} from "@mui/icons-material";
+// import {Clear} from "@mui/icons-material";
 import "./UpdateProposal.css"
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -93,9 +93,9 @@ const UpdateProposal=({update, setUpdate})=>{
         <form className="proposalPostingForm">
             <header>
                 <h3>Update Proposal</h3>
-                <Clear className="proposalPostingFormbackSymbol" onClick={()=>{
+                {/* <Clear className="proposalPostingFormbackSymbol" onClick={()=>{
                     navigate("/view");
-                }} />
+                }} /> */}
             </header>
             <section>
                 <section className="proposalPostingFormBodyLeftPart">
