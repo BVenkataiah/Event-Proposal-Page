@@ -9,7 +9,7 @@ import UserPageListItem from "./components/userPageListItem/UserPageListItem";
 import VendorHeader from "./components/vendorHeader/VendorHeader";
 import ViewProposal  from "./components/viewProposal/ViewProposal";
 import CreateProposal from "./components/createProposal/CreateProposal";
-import Login  from "./components/logIn/Login";
+import Login  from "./components/login/Login";
 
 function App() {
   return (
