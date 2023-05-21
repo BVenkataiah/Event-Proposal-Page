@@ -1,0 +1,146 @@
+body {
+    margin: 0;
+  }
+  #main-container {
+      
+    background-image: url("../../assets//images/party-people-enjoy-concert-at-festival-summer-DHDMPWH.png");
+  
+   
+  
+  
+  
+  
+    
+    height: 750px;
+    width: 150p0x;
+    display: flex;
+    color: rgb(249, 22, 22);
+    justify-content: space-between;
+  
+  }
+  
+  #logo {
+    margin-top: 10px;
+    font-size: larger;
+    margin-right: 276px;
+    color: white;
+  }
+  
+  #text-box {
+    margin-top: 250px;
+    margin-left: 100px;
+    width: 530px;
+    height: 288px;
+    text-align: left;
+    font: normal normal 600 70px/96px Open Sans;
+    letter-spacing: 3.5px;
+    color: #ffffff;
+    text-transform: uppercase;
+    opacity: 1;
+  }
+  
+  #form-container {
+    height: 350px;
+    width: 300px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    opacity: 1;
+    margin-top: 250px;
+    margin-right: 100px;
+  }
+  
+  #vendor {
+    width: 50%;
+    height: 50px;
+    border: 1px solid rgb(231, 229, 229);
+    position: relative;
+    text-align: center;
+    font: normal normal bold 16px/22px Open Sans;
+    letter-spacing: 0.38px;
+    color: #4e94f4;
+    opacity: 1;
+  }
+  
+  #user {
+    width: 50%;
+    height: 50px;
+    border: 1px solid rgb(224, 221, 221);
+    position: relative;
+    text-align: center;
+    font: normal normal bold 16px/22px Open Sans;
+    letter-spacing: 0.38px;
+    color: #4e94f4;
+    opacity: 1;
+  }
+  
+  #form-flex {
+    display: flex;
+  }
+  
+  input {
+    width: 75%;
+    height: 30px;
+    margin-top: 50px;
+  }
+  
+  
+  input:hover {
+    width: 95%;
+  }
+  
+  #pass{
+      margin-top: 20px;
+  }
+  
+  #signin-msg {
+    position: relative;
+    color: black;
+    left: -15px;
+    top: 25px;
+    font: normal normal normal 22px/30px Open Sans;
+  letter-spacing: 0.53px;
+  color: #1B2734;
+  opacity: 1;
+  }
+  
+  #forgot-password {
+    position: relative;
+    color: #04425a;
+    left: 55px;
+    top: 5px;
+  }
+  #forgot-password:hover {
+    color: #1d6988;
+    font-size: large;
+  }
+  
+  #signin {
+    width: 100px;
+    height: 38px;
+    background: #4e94f4 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    opacity: 1;
+    color: white;
+    margin-top: 53px;
+    margin-left: 165px;
+    font-weight: bolder;
+  }
+  
+  #signin:hover {
+    background: #99bff4 0% 0% no-repeat padding-box;
+  }
+  
+  #createaccount {
+    text-align: left;
+    font: normal normal 600 18px/24px Open Sans;
+    letter-spacing: 0px;
+    color: #4e94f4;
+    opacity: 1;
+    margin-left: 10px;
+    margin-top: -21px;
+  }
+  
+  #createaccount:hover {
+    color: #264878;
+  }
+  
