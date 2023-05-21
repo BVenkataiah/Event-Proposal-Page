@@ -17,7 +17,7 @@ const UserHeader = ({ user }) => {
   }
   useEffect(() => { checkSession() }, [])
   const userLogout = () => {
-    axios.get("https://event-proposal-page-94qh.onrender.com//users/logout", { withCredentials: true }).then((res) => {
+    axios.get("https://event-proposal-page-94qh.onrender.com/users/logout", { withCredentials: true }).then((res) => {
       Swal.fire({
         title: 'Do you want to proceed with logout?',
         showDenyButton: true,
