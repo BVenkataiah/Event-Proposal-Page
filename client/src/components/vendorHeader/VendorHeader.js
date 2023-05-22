@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import './VendorHeader.css';
 import Swal from "sweetalert2";
 
-const HeaderDashboard = () => {
+const VendorHeader = () => {
   const navigate = useNavigate();
   const checkSession = () => {
     axios
-      .get("https://eventproposalserver.onrender.com/check", {
+      .get("https://event-proposal-page-94qh.onrender.com/check", {
         withCredentials: true,
       })
       .then((res) => {
@@ -16,7 +16,7 @@ const HeaderDashboard = () => {
           navigate("/");
         } else {
           axios
-            .get("hthttps://eventproposalserver.onrender.com/vendors/info", {
+            .get("https://event-proposal-page-94qh.onrender.com/vendors/info", {
               withCredentials: true,
             })
             .then((data) => {
@@ -38,7 +38,7 @@ const HeaderDashboard = () => {
   useEffect(() => {
     setTimeout(() => {
       axios
-        .get("https://eventproposalserver.onrender.com/vendors/info", {
+        .get("https://event-proposal-page-94qh.onrender.com/vendors/info", {
           withCredentials: true,
         })
         .then((data) => {
@@ -58,7 +58,7 @@ const HeaderDashboard = () => {
           id="logout"
           onClick={() => {
             axios
-              .get("https://eventproposalserver.onrender.com/vendors/logout", {
+              .get("https://event-proposal-page-94qh.onrender.com/vendors/logout", {
                 withCredentials: true,
               })
               .then(() => {
@@ -83,4 +83,4 @@ const HeaderDashboard = () => {
   );
 };
 
-export default HeaderDashboard;
+export default VendorHeader;

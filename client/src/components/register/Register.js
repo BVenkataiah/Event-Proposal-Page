@@ -1,5 +1,5 @@
 import {ArrowBack} from "@mui/icons-material";
-import "./register.css";
+import "./Register.css";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -88,7 +88,7 @@ const registerHandler=(e)=>{
                 password:form.password
             }
 
-             axios.post("https://eventproposalserver.onrender.com/vendors/register",data).then((response)=>{
+             axios.post("https://event-proposal-page-94qh.onrender.com/vendors/register",data).then((response)=>{
                 if(response.data.message==="registered successfully")
                {
                 Swal.fire({
@@ -144,7 +144,7 @@ const registerHandler=(e)=>{
                 password:form.password
             }
 
-             axios.post("https://eventproposalserver.onrender.com/users/register",data).then((response)=>{
+             axios.post("https://event-proposal-page-94qh.onrender.com/users/register",data).then((response)=>{
                if(response.data.message==="registered successfully")
                {
                 Swal.fire({

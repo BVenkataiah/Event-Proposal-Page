@@ -2,6 +2,7 @@ import {ChevronLeft,ArrowBack} from "@mui/icons-material";
 import axios from "axios";
 import "./ProposalInfo.css";
 import Swal from "sweetalert2";
+import UserHeader from "../userHeader/UserHeader";
 const ProposalInfo=(props)=>{
     const closeEventInfoHandler=()=>{
         props.close[props.ind]=false;
@@ -12,7 +13,7 @@ const ProposalInfo=(props)=>{
         {
             
            
-            axios.put(`https://eventproposalserver.onrender.com/users/${props.user}`,{select:props.show._id})
+            axios.put(`https://event-proposal-page-94qh.onrender.com/users/${props.user}`,{select:props.show._id})
             .then((response)=>{
                 Swal.fire({
                     title: 'Add this proposal?',
@@ -23,7 +24,7 @@ const ProposalInfo=(props)=>{
                   }).then((result) => {
                   
                     if (result.isConfirmed) {
-                        axios.get(`https://eventproposalserver.onrender.com/events/${props.show._id}`,{withCredentials:true})
+                        axios.get(`https://event-proposal-page-94qh.onrender.com/events/${props.show._id}`,{withCredentials:true})
                         .then((res)=>{
                             props.setSelect({isValid:true,data:res.data.result});
                             closeEventInfoHandler();
@@ -50,7 +51,7 @@ const ProposalInfo=(props)=>{
     return(
         <>
         <article className="eventInfoContainer">
-            <TopBar/>
+            <UserHeader/>
             <header>
                 <section>
                     <h4>Proposals<ChevronLeft/></h4>

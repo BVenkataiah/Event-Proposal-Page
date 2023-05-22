@@ -1,5 +1,6 @@
 import "./UserPage.css"
-import UserPageListItem from "../UserPageListItem/UserPageList"
+import UserPageListItem from "../userPageListItem/UserPageListItem";
+import UserHeader from "../userHeader/UserHeader";
 import { useState } from "react";
 import {Delete} from "@mui/icons-material"
 import { useEffect } from "react";
@@ -21,7 +22,7 @@ const UserPage=()=>{
             denyButtonText: `Cancel`
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.put(`https://eventproposalserver.onrender.com/users/${userInfo._id}`, { select: "" })
+                axios.put(`https://event-proposal-page-94qh.onrender.com/users/${userInfo._id}`, { select: "" })
                     .then((response) => { setSelected({ isValid: false, data: {} }) })
                     .catch((e) => { console.log("error in deleting") })
 
@@ -29,12 +30,12 @@ const UserPage=()=>{
         })
     }
     const retriveUserInfo=()=>{
-        axios.get("https://eventproposalserver.onrender.com/users/info",{withCredentials:true})
+        axios.get("https://event-proposal-page-94qh.onrender.com/users/info",{withCredentials:true})
         .then((response)=>{
             setUserInfo(response.data.result);
             if(response.data.result.select)
             {
-                axios.get(`https://eventproposalserver.onrender.com/events/${response.data.result.select}`,{withCredentials:true})
+                axios.get(`https://event-proposal-page-94qh.onrender.com/events/${response.data.result.select}`,{withCredentials:true})
                 .then((response)=>{setSelected({isValid:true,data:response.data.result})})
                 .catch((e)=>{console.log(e)});
                 }
@@ -45,7 +46,7 @@ const UserPage=()=>{
         }).catch((e)=>{console.log(e)});
     }
     const retriveProposals=()=>{
-        axios.get("https://eventproposalserver.onrender.com/events/all",{withCredentials:true})
+        axios.get("https://event-proposal-page-94qh.onrender.com/events/all",{withCredentials:true})
         .then((response)=>{
             console.log(response.data);
             setProposals(response.data.result);
@@ -60,7 +61,7 @@ const UserPage=()=>{
     return(
         <>
         <article className="UserPageContainer">
-            <TopBar user={userInfo.userName}/>
+            <UserHeader  user={userInfo.userName}/>
             <section className="UserPageImageSection">
 
             </section>
@@ -85,7 +86,7 @@ const UserPage=()=>{
                   <section>
                     {
                         proposals.map((value,index)=>{
-                            return <LandingPageListItem key={index} listItemData={value} urr={arr} setUrr={setArr} number={index} select={selected} setSelect={setSelected} user={userInfo._id} />
+                            return <UserPageListItem key={index} listItemData={value} urr={arr} setUrr={setArr} number={index} select={selected} setSelect={setSelected} user={userInfo._id} />
                         })
                     }
                   </section>

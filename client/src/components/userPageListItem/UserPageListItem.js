@@ -1,7 +1,7 @@
-import  "./userPageList.css";
+import  "./UserPageListItem.css";
 
-import ProposalInfo from "../proposalInfo/proposalInfo";
-const userPageListItem=(props)=>{
+import ProposalInfo from "../proposalInfo/ProposalInfo";
+const UserPageListItem=(props)=>{
   const eventInfoHandler=()=>{
     props.urr[props.number]=true;
     props.setUrr([...props.urr]);
@@ -21,4 +21,4 @@ const userPageListItem=(props)=>{
         </>
     )
 }
-export default userPageListItem;
+export default UserPageListItem;

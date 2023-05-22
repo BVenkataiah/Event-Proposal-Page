@@ -8,7 +8,7 @@ const Signin = () => {
   const navigate = useNavigate();
   const checkSession = () => {
     axios
-      .get("https://eventproposalserver.onrender.com/check", {
+      .get("https://event-proposal-page-94qh.onrender.com/check", {
         withCredentials: true,
       })
       .then((res) => {
@@ -33,7 +33,7 @@ const Signin = () => {
       if (vendor) {
         axios
           .post(
-            "https://eventproposalserver.onrender.com/vendors/login",
+            "https://event-proposal-page-94qh.onrender.com/vendors/login",
             form,
             { withCredentials: true }
           )
@@ -82,7 +82,7 @@ const Signin = () => {
           });
       } else {
         axios
-          .post("https://eventproposalserver.onrender.com/users/login", form, {
+          .post("https://event-proposal-page-94qh.onrender.com/users/login", form, {
             withCredentials: true,
           })
           .then((response) => {
