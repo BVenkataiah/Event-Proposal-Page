@@ -1,104 +1,99 @@
-import React from 'react'
-import img1 from "../../Assets/bg party.jpg";
-import { Link } from 'react-router-dom'
-import { useContext, useState } from "react"
-import "./userPage.css"
-import { useNavigate } from "react-router-dom"
+import "./UserPage.css"
+import LandingPageListItem from "../UserPageListItem/landingPageList"
+import { useState } from "react";
+import {Delete} from "@mui/icons-material"
+import { useEffect } from "react";
 import Swal from "sweetalert2";
+import axios from "axios";
+const UserPage=()=>{
+    const [selected,setSelected]=useState({isValid:false,data:{}});
+    const [arr,setArr]=useState(Array(selected.data.length).fill(false));
+    const [userInfo,setUserInfo]=useState({});
+    const [proposals,setProposals]=useState([]);
+    const userSelectionDeleteHandler = () => {
+        Swal.fire({
+            position: 'center',
+            icon: 'question',
+            title: 'Delete this proposal?',
+            showConfirmButton: true,
+            showDenyButton:true,
+            confirmButtonText: 'Delete',
+            denyButtonText: `Cancel`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.put(`https://eventproposalserver.onrender.com/users/${userInfo._id}`, { select: "" })
+                    .then((response) => { setSelected({ isValid: false, data: {} }) })
+                    .catch((e) => { console.log("error in deleting") })
 
-const Login = () =>{
-    const [data , updatelogin] = useState({contact:"" , password:""});
-    //const [userdata, getuserdata] = useState([])
-    const [msg , updatemsg] = useState()
-    const { setUsername } = useContext(UserContext)
-    const naviagte = useNavigate()
-
-    const handlelogin = async () =>{
-        const formdata = new FormData()
-        formdata.append("contact", data.contact)
-        formdata.append("password", data.password)
-        const response = await fetch("https://dhas-proposal-server.onrender.com/loginuser", {
-          method: 'POST',
-          body: formdata
+            }
         })
-   
-
-        const resp = await response.json()
-      
-        if(resp.status === "failure"){
-            naviagte("/loginuser")
-            {Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'User not found',
-              
-              })}
-
-        }else if(resp.status === "failure2"){
-            updatemsg(<div className="msg2">Invalid Password</div>)
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Invalid Password',
-                footer: '<a href="">Why do I have this issue?</a>'
-              })
-        }else{
-        
-            const { username } = resp.user;
-            console.log(username); // Output: 
-         setUsername(resp.user.username)
-            naviagte("/")
-           
-            Swal.fire({
-                title: 'User logged in successfully',
-                icon: 'success',
-                showClass: {
-                   popup: 'animate_animated animate_fadeInDown'
-                },
-                hideClass: {
-                   popup: 'animate_animated animate_fadeOutUp'
-                }
-             })
-          
-        }
     }
+    const retriveUserInfo=()=>{
+        axios.get("https://eventproposalserver.onrender.com/users/info",{withCredentials:true})
+        .then((response)=>{
+            setUserInfo(response.data.result);
+            if(response.data.result.select)
+            {
+                axios.get(`https://eventproposalserver.onrender.com/events/${response.data.result.select}`,{withCredentials:true})
+                .then((response)=>{setSelected({isValid:true,data:response.data.result})})
+                .catch((e)=>{console.log(e)});
+                }
+            else{
+                setSelected({isValid:false,data:{}})
+            }
 
-const handle = () =>{
-    naviagte("/registeruser")
+        }).catch((e)=>{console.log(e)});
+    }
+    const retriveProposals=()=>{
+        axios.get("https://eventproposalserver.onrender.com/events/all",{withCredentials:true})
+        .then((response)=>{
+            console.log(response.data);
+            setProposals(response.data.result);
+        }).catch((e)=>{console.log(e)});
+    }
+    useEffect(()=>{
+        retriveUserInfo();
+        retriveProposals();
+        
+    },[])
+    
+    return(
+        <>
+        <article className="UserPageContainer">
+            <TopBar user={userInfo.userName}/>
+            <section className="UserPageImageSection">
+
+            </section>
+            <section  className="UserPagescrollSection">
+            {
+                selected.isValid?<h4 className="UserPageSelectedFieldHeading">Selected</h4>:null
+            }
+            {
+
+               selected.isValid? <article className="UserSelectedEvent" >
+               <img src={selected.data.eventImage} alt="pic"/>
+               <ul>
+                 <li>{selected.data.vendorName}</li>
+                 <li>{selected.data.budget}/-</li>
+                 <li>{selected.data.place}</li>
+               </ul>
+               <Delete className="UserSelectedEventDeleteIcon" onClick={userSelectionDeleteHandler}/>
+                </article>:null
+            }
+            <section className={selected.isValid?"UserPageProposalsContainerafterSelection":"UserPageProposalsContainer"}>
+                  <h4>Proposals</h4>
+                  <section>
+                    {
+                        proposals.map((value,index)=>{
+                            return <LandingPageListItem key={index} listItemData={value} urr={arr} setUrr={setArr} number={index} select={selected} setSelect={setSelected} user={userInfo._id} />
+                        })
+                    }
+                  </section>
+            </section>
+            </section>
+
+        </article>
+        </>
+    )
 }
-
-const handleSymbol =()=>{
- naviagte("/loginvendor")
-}
-
-return(
-   
-    <div className="form2">
-   <img src={img1} alt='party' className='party'/>
-   <img src={logoimg} alt='symbol' onClick={handleSymbol} className='symbol' /> 
-    <div id="user-formContainer">
-   <Link to="/loginvendor" ><button className='vendor-btn'>Vendor</button></Link>
- <Link to="/loginuser"><button className='user-btn'>User</button> </Link>
-<div className='signup-text'>Sign in Your Account </div>
-<div className='input-boxes'>
-
-    <input type="tel" className='phone-input' placeholder='Enter Your contact...' value={data.contact} onChange={(e) => {updatelogin({ ...data, contact: e.target.value }) }}  />
-  
-    <input type="password" className='password-input'placeholder='Enter Your password...' value={data.password} onChange={(e) => { updatelogin({ ...data, password: e.target.value }) }} /> 
-    </div>
-
-   <p className='forgot-text'>Forgot Password.?</p>
-   <div className="link-buttons">      
-    <Link to="/registeruser" className='create-user' onClick={handle} >Create Account</Link>
-   <span ><button  onClick={handlelogin}  id="login-btn">Login</button></span>
-   <div className="msg"> {msg}
-   </div>
-   
-   
-    </div>
-   </div>
-    </div>
-)
-}
-
-export default Login
+export default UserPage;
