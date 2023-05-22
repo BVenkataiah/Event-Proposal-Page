@@ -1,25 +1,86 @@
-import React from "react";
-import "./VendorHeader.css";
-import profilepic from "../../assets/images/mnt-prf.jpg";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import './VendorHeader.css';
+import Swal from "sweetalert2";
 
-
-const VendorHeader = () => {
+const HeaderDashboard = () => {
+  const navigate = useNavigate();
+  const checkSession = () => {
+    axios
+      .get("https://eventproposalserver.onrender.com/check", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.data.msg !== "vendor") {
+          navigate("/");
+        } else {
+          axios
+            .get("hthttps://eventproposalserver.onrender.com/vendors/info", {
+              withCredentials: true,
+            })
+            .then((data) => {
+              setVendorName(data.data.vendorName);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      })
+      .catch((err) => {
+        console.log("Failed Checking", err);
+      });
+  };
+  useEffect(() => {
+    checkSession();
+  }, []);
+  const [vendorName, setVendorName] = useState("");
+  useEffect(() => {
+    setTimeout(() => {
+      axios
+        .get("https://eventproposalserver.onrender.com/vendors/info", {
+          withCredentials: true,
+        })
+        .then((data) => {
+          setVendorName(data.data.vendorName);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 500);
+  }, []);
   return (
-    <>
-      <div id="navbar">
-        <div id="nav-logo">LOGO</div>
-        <div id="profile-section">
-          <span id="profile-name">Vendor Name</span>
-          <span id="profile-photo">
-            <img src={profilepic} alt="pic" id="pic-pro" />
-          </span>
-        </div>
+    <header id="headerDashboard">
+      <img id="headerDashboardLogo" src="/images/logo.jpeg" alt="logo" />
+      <div>
+        <span>{vendorName}</span>
+        <button
+          id="logout"
+          onClick={() => {
+            axios
+              .get("https://eventproposalserver.onrender.com/vendors/logout", {
+                withCredentials: true,
+              })
+              .then(() => {
+                Swal.fire({
+                  title: "Do you want to proceed with logout?",
+                  showDenyButton: true,
+                  showCancelButton: false,
+                  confirmButtonText: "Logout",
+                  denyButtonText: `No`,
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    navigate("/");
+                  }
+                });
+              });
+          }}
+        >
+          Log out
+        </button>
       </div>
-
-     
-     
-    </>
+    </header>
   );
 };
 
-export default VendorHeader;
+export default HeaderDashboard;
