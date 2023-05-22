@@ -16,16 +16,16 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="CreateProposal" eelement={<CreateProposal />} />
+          <Route path="/add" eelement={<CreateProposal />} />
           <Route path="/ProposalInfo" element={<ProposalInfo />} />
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Login />} />
-          <Route path="/UpdateProposal" element={<UpdateProposal />} />
+          <Route path="/update" element={<UpdateProposal />} />
           <Route path="/UserHeader" element={<UserHeader />} />
-          <Route path="/UserPage" element={<UserPage />} />
+          <Route path="/userLanding" element={<UserPage />} />
           <Route path="/UserPageListItem" element={<UserPageListItem />} />
           <Route path="/VendorHeader" element={<VendorHeader />} />
-          <Route path="/ViewProposal" element={<ViewProposal />} />
+          <Route path="/view" element={<ViewProposal />} />
         </Routes>
       </BrowserRouter>
     </div>

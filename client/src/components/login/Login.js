@@ -156,7 +156,6 @@ const Signin = () => {
             <p>
               TEXT WILL <br /> BE DISPLAYED HERE
             </p>
-            <button>End User</button>
           </section>
           <section>
             <form className="signinPageForm">

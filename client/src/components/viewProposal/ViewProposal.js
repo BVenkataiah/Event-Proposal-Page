@@ -1,56 +1,106 @@
-import React from "react";
-import searchicon from "../../assets/images/search.svg";
-import pencil from "../../assets/images/pencil-edit-button.svg";
-import bin from "../../assets/images/bin.svg";
-import "./ViewProposal.css"
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import VendorHeader from "../vendorHeader/VendorHeader";
+import "./ViewProposal.css";
+import Swal from "sweetalert2"
 
-const ViewProposal = () => {
-  return (
-    <>
-    <VendorHeader />
-    <div id="search-btn-bar">
-        <div id="proposal-flex">
-          <span id="proposal-text">Proposals</span>
-          <img src={searchicon} alt="" id="search-icon" />
-          <span id="src-prd">search products</span>
-        </div>
-        <div id="btn-side">
-          <div id="create-btn">
-            <button id="btn-one">CREATE</button>
-          </div>
-        </div>
-      </div>
 
-    <div className="proposal-list">
-        <div id="event-name">EVENT NAME</div>
-        <div id="event-description">Hello this event is For a marriage.</div>
-        <div id="event-items">
-          <span>Event Type</span>
-          <span>Proposal Type</span>
-          <span>From Date</span>
-          <span>To Date</span>
-          <span>Budget</span>
-        </div>
-        <div id="event-items-details">
-          <div id="event-item-description">
-            <span>Marriage</span>
-            <span>Venue</span>
-            <span>21-may-2023</span>
-            <span>23-may-2023</span>
-            <span>500000</span>
-          </div>
+const ViewProposal = ({ setUpdate }) => {
+    const navigate = useNavigate();
+    const [proposals, setProposals] = useState([]);
+    const [search, setSearch] = useState("");
+    const reloadData = (word) => {
+        setTimeout(async () => {
+            const data = await axios.get(`https://event-proposal-page-94qh.onrender.com/events/info`, { withCredentials: true })
+                if(word===""){
+                    setProposals(data.data.result);
+                    return;
+                }
+                let filteredData = [];
+                data.data.result.map(propo=>{
+                    if(propo.eventType.toLowerCase().includes(word.toLowerCase())){
+                        filteredData.push(propo);
+                    }
+                    
+                })
+                setProposals(filteredData);
+        }, 500)
+    }
+    useEffect(() => {
+        reloadData("")
+    }, [])
+    return <div id="viewProposals">
+        <VendorHeader />
+        <section id="searchProposals">
+            <span id="proposalsText">Proposals</span>
+            <img src="/images/search.jpeg" alt="searchIcon" id="searchIcon" />
+            <input id="searchText" type="text" placeholder="Search Projects" value={search} onChange={async(e)=>{
+                setSearch(e.target.value)
+                reloadData(e.target.value);
+            }} />
+            <button id="searchButton"
+            onClick={() => {
+                navigate("/add");
+            }}>Create</button>
+        </section>
+        <section id="proposalList">
+            {proposals.map((data, index) => {
+                return <div key={index} className="proposal">
+                    <h5 className="name">{data.name}</h5>
+                    <p className="description">{data.description}</p>
+                    <div className="proposalFooter">
+                        <div className="details">
+                            <div className="singleDetail">
+                                <p>Event Type</p>
+                                <h5>{data.eventType}</h5>
+                            </div>
+                            <div className="singleDetail">
+                                <p>Proposal Type</p>
+                                <h5>{data.proposalType}</h5>
+                            </div>
+                            <div className="singleDetail">
+                                <p>From Date</p>
+                                <h5>{data.from}</h5>
+                            </div>
+                            <div className="singleDetail">
+                                <p>To Date</p>
+                                <h5>{data.to}</h5>
+                            </div>
+                            <div className="singleDetail">
+                                <p>Budget</p>
+                                <h5>{data.budget}</h5>
+                            </div>
+                        </div>
+                        <div className="icons">
+                            <img className="editIcon" src="/images/edit.jpeg" alt="editIcon" onClick={()=>{
+                                setUpdate(data._id);
+                                navigate("/update");
+                            }} />
+                            <img className="deleteIcon" src="/images/bin.jpeg" alt="deleteIcon" onClick={()=>{
+                                Swal.fire({
+                                    title: 'Delete this Proposal?',
+                                    showDenyButton: true,
+                                    showCancelButton: false,
+                                    confirmButtonText: 'Delete',
+                                    denyButtonText: `Cancel`,
+                                    }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        axios.delete(`https://event-proposal-page-94qh.onrender.com/events/${data._id}`).then((response)=>{
+                                            reloadData("");
+                                         }).catch(err=>{
+                                             console.log(err);
+                                         })
+                                    }
+                                    })
 
-          <div id="dlt-btn-bar">
-            <img src={pencil} alt="edit" />
-            <img src={bin} alt="delete" />
-          </div>
-        </div>
-      </div>
-     
-
-        </>
-  )
+                            }} />
+                        </div>
+                    </div>
+                </div>
+            })}
+        </section>
+    </div>
 }
 
-export default ViewProposal
+export default ViewProposal;

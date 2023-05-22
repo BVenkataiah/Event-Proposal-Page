@@ -221,7 +221,6 @@ const dataBaseToggleHandler=(e)=>{
         <section>
             <section>
                 <p>TEXT WILL <br/> BE DISPLAYED  HERE</p>
-                <button>End User</button>
             </section>
             <section>
                 <form className="registrationPageForm">
