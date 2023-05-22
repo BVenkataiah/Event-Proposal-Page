@@ -1,5 +1,5 @@
 import "./UserPage.css"
-import LandingPageListItem from "../UserPageListItem/landingPageList"
+import UserPageListItem from "../UserPageListItem/UserPageList"
 import { useState } from "react";
 import {Delete} from "@mui/icons-material"
 import { useEffect } from "react";
