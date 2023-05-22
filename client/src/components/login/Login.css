@@ -1,146 +1,117 @@
-body {
-    margin: 0;
-  }
-  #main-container {
-      
-    background-image: url("../../assets//images/party-people-enjoy-concert-at-festival-summer-DHDMPWH.png");
+.signinPageContainer{
+  width:100vw;
+  height:100vh;
+  position:absolute;
+  top:0px;
+  margin-top: 0px;
+  background-image: url("../../../public/images/reglogBackground.png");
+  background-size: cover;
+  background-position: 0px;
+  background-repeat: no-repeat;
   
-   
-  
-  
-  
-  
-    
-    height: 750px;
-    width: 150p0x;
-    display: flex;
-    color: rgb(249, 22, 22);
-    justify-content: space-between;
-  
-  }
-  
-  #logo {
-    margin-top: 10px;
-    font-size: larger;
-    margin-right: 276px;
-    color: white;
-  }
-  
-  #text-box {
-    margin-top: 250px;
-    margin-left: 100px;
-    width: 530px;
-    height: 288px;
-    text-align: left;
-    font: normal normal 600 70px/96px Open Sans;
-    letter-spacing: 3.5px;
-    color: #ffffff;
-    text-transform: uppercase;
-    opacity: 1;
-  }
-  
-  #form-container {
-    height: 350px;
-    width: 300px;
-    background: #ffffff 0% 0% no-repeat padding-box;
-    border-radius: 8px;
-    opacity: 1;
-    margin-top: 250px;
-    margin-right: 100px;
-  }
-  
-  #vendor {
-    width: 50%;
-    height: 50px;
-    border: 1px solid rgb(231, 229, 229);
-    position: relative;
-    text-align: center;
-    font: normal normal bold 16px/22px Open Sans;
-    letter-spacing: 0.38px;
-    color: #4e94f4;
-    opacity: 1;
-  }
-  
-  #user {
-    width: 50%;
-    height: 50px;
-    border: 1px solid rgb(224, 221, 221);
-    position: relative;
-    text-align: center;
-    font: normal normal bold 16px/22px Open Sans;
-    letter-spacing: 0.38px;
-    color: #4e94f4;
-    opacity: 1;
-  }
-  
-  #form-flex {
-    display: flex;
-  }
-  
-  input {
-    width: 75%;
-    height: 30px;
-    margin-top: 50px;
-  }
-  
-  
-  input:hover {
-    width: 95%;
-  }
-  
-  #pass{
-      margin-top: 20px;
-  }
-  
-  #signin-msg {
-    position: relative;
-    color: black;
-    left: -15px;
-    top: 25px;
-    font: normal normal normal 22px/30px Open Sans;
-  letter-spacing: 0.53px;
-  color: #1B2734;
+}
+.signinPageContainer>h1{
+  color:white;
+  letter-spacing: 1.28px;
+  margin-left: 1%;
+  font: normal normal bold 32px/43px Open Sans;
+}
+.signinPageContainer>section{
+  display:flex;
+  justify-content: space-between;
+  margin-top: 10%;
+}
+.signinPageForm{
+  display:flex;
+  flex-direction: column;
+  border:1px;
+  width:425px;
+  height:auto;
+  background-color: white;
+  border-radius: 8px;
+}
+.signinPageContainerButtonColor{
+  color:#4E94F4;
+}
+
+.signinPageForm>section:first-child{
+  border:1px solid #D1D1D1;
+  border-radius: 8px;
+}
+.signinPageForm>section>button{
+  width:50%;
+  margin-top: 0px;
+  height:30px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border-style: none;
+  border-right:1px solid #D1D1D1 ;
   opacity: 1;
-  }
-  
-  #forgot-password {
-    position: relative;
-    color: #04425a;
-    left: 55px;
-    top: 5px;
-  }
-  #forgot-password:hover {
-    color: #1d6988;
-    font-size: large;
-  }
-  
-  #signin {
-    width: 100px;
-    height: 38px;
-    background: #4e94f4 0% 0% no-repeat padding-box;
-    border-radius: 8px;
-    opacity: 1;
-    color: white;
-    margin-top: 53px;
-    margin-left: 165px;
-    font-weight: bolder;
-  }
-  
-  #signin:hover {
-    background: #99bff4 0% 0% no-repeat padding-box;
-  }
-  
-  #createaccount {
-    text-align: left;
-    font: normal normal 600 18px/24px Open Sans;
-    letter-spacing: 0px;
-    color: #4e94f4;
-    opacity: 1;
-    margin-left: 10px;
-    margin-top: -21px;
-  }
-  
-  #createaccount:hover {
-    color: #264878;
-  }
-  
+ 
+}
+.signinPageForm>section>button{
+  cursor:pointer;
+}
+.signinPageForm>h3{
+  margin-top: 25px;
+  margin-left: 20px;
+  font: normal normal normal 22px/30px Open Sans;
+}
+.signinPageForm>input{
+  margin:10px 20px;
+  height:30px;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  font: normal normal 600 Open Sans;
+}
+.signinPageForm>p{
+  text-align: right;
+  margin-right: 20px;
+  font: normal normal normal 14px/19px Open Sans;
+  color: #04425A;
+  opacity: 1;
+}
+.signinPageContainer>section>section{
+  margin: 0px 80px;
+}
+.signinPageContainer>section>section:first-child>p{
+  color:white;
+  font-style: normal normal 600 70px/96px Open Sans;
+  letter-spacing: 3.5px;
+  width:330px;
+  font-size: 45px;
+
+}
+.signinPageContainer>section>section:first-child>button{
+  border-radius: 8px;
+  background-color:#4E94F4;
+  color:white;
+  font: normal normal bold 16px/22px Open Sans;
+  height:40px;
+  width:100px;
+  border: none;
+}
+.signinPageContainer>section>section:first-child>button:hover{
+  cursor:pointer;
+}
+.signinPageFormButtonSection{
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+.signinPageFormButtonSection>button:first-child{
+  color:#4E94F4;
+  background-color: white;
+  border:none;
+  font: normal normal 600 14px/24px Open Sans;
+}
+.signinPageFormButtonSection>button:hover{
+  cursor:pointer;
+}
+.signinPageFormButtonSection>button:nth-child(2){
+  color:white;
+  background-color: #4E94F4;
+  border: none;
+  border-radius: 6px;
+  font: normal normal 600 12px/26px Open Sans;
+}
