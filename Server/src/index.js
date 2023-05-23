@@ -16,10 +16,10 @@ dotenv.config();
 
 
 const app = express();
-// app.use(cors({
-//     credentials:true,
-//     origin:reactUrl,
-// }));
+app.use(cors({
+    credentials:true,
+    origin:"*",
+}));
 app.use(session({
     resave: false,
     saveUninitialized: false,
